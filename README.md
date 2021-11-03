@@ -2,6 +2,14 @@
 
 A new Flutter project.
 
+## injectable generator
+
+Use the [watch] flag to watch the files' system for edits and rebuild as necessary.
+`$ flutter packages pub run build_runner watch`
+
+if you want the generator to run one time and exits use
+`$ flutter packages pub run build_runner build`
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

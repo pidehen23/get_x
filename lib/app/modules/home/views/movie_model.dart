@@ -1,8 +1,6 @@
-// To parse this JSON data, do
-//
-//     final movieModel = movieModelFromJson(jsonString);
-
 import 'dart:convert';
+import 'package:json_annotation/json_annotation.dart';
+part 'movie_model.g.dart';
 
 List<MovieModel> movieModelFromJson(String str) =>
     List<MovieModel>.from(json.decode(str).map((x) => MovieModel.fromJson(x)));
@@ -10,6 +8,7 @@ List<MovieModel> movieModelFromJson(String str) =>
 String movieModelToJson(List<MovieModel> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
+@JsonSerializable(fieldRename: FieldRename.snake)
 class MovieModel {
   MovieModel({
     required this.title,
@@ -33,27 +32,8 @@ class MovieModel {
   int diggCount;
   int commentCount;
 
-  factory MovieModel.fromJson(Map<String, dynamic> json) => MovieModel(
-        title: json["title"],
-        shareUrl: json["share_url"],
-        author: json["author"],
-        itemCover: json["item_cover"],
-        hotValue: json["hot_value"],
-        hotWords: json["hot_words"],
-        playCount: json["play_count"],
-        diggCount: json["digg_count"],
-        commentCount: json["comment_count"],
-      );
+  factory MovieModel.fromJson(Map<String, dynamic> json) =>
+      _$MovieModelFromJson(json);
 
-  Map<String, dynamic> toJson() => {
-        "title": title,
-        "share_url": shareUrl,
-        "author": author,
-        "item_cover": itemCover,
-        "hot_value": hotValue,
-        "hot_words": hotWords,
-        "play_count": playCount,
-        "digg_count": diggCount,
-        "comment_count": commentCount,
-      };
+  Map<String, dynamic> toJson() => _$MovieModelToJson(this);
 }
