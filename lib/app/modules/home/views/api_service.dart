@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'movie_model.dart';
 
 class ApiService {
@@ -8,7 +9,7 @@ class ApiService {
         "http://apis.juhe.cn/fapig/douyin/billboard?type=hot_video&size=50&key=9eb8ac7020d9bea6048db1f4c6b6d028");
     if (response.statusCode == 200) {
       var jsonString = response.data['result'];
-      return movieModelFromJson(json.encode(jsonString));
+      return compute(movieModelFromJson, (json.encode(jsonString)));
     }
     return throw Exception('api error!');
   }
