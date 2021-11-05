@@ -26,6 +26,7 @@ class DogTable {
   initDB() async {
     // Avoid errors caused by flutter upgrade.
     // Importing 'package:flutter/widgets.dart' is required.
+    print(join(await getDatabasesPath(), 'doggie_database.db'));
     WidgetsFlutterBinding.ensureInitialized();
     // Open the database and store the reference.
     return await openDatabase(
