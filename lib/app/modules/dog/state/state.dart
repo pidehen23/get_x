@@ -75,6 +75,18 @@ class DogTable {
     });
   }
 
+  // 根据id查询信息
+  Future<Dog?> getDogById(int id) async {
+    final Database db = await database;
+
+    final List<Map<String, dynamic>> maps = await db.query('dogs',
+        columns: ['id', 'name', 'age'], where: 'id = ?', whereArgs: [id]);
+    if (maps.isNotEmpty) {
+      return Dog.fromJson(maps.first);
+    }
+    return null;
+  }
+
   Future<void> updateDog(Dog dog) async {
     final Database db = await database;
     // Update the given Dog (修改给定的狗狗的数据)
