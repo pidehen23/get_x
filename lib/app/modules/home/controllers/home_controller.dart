@@ -7,13 +7,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 const ShareKey = 'counter';
 
 class HomeController extends GetxController {
-  var isLoading = false;
+  bool isLoading = false;
   int count = 0;
   List<MovieModel> movieList = [];
 
   void increment() async {
-    var abc = await (LocalStorage.getInt(ShareKey));
-    count = (abc ?? 0) + 1;
+    var tmpCount = await (LocalStorage.getInt(ShareKey));
+    count = (tmpCount ?? 0) + 1;
     LocalStorage.setInt(ShareKey, count);
     update();
   }

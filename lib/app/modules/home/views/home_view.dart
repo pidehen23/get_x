@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_x/app/routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -20,6 +21,16 @@ class HomeView extends GetView<HomeController> {
               );
             },
           ),
+          actions: [
+            Center(
+              child: IconButton(
+                icon: Icon(Icons.public),
+                onPressed: () {
+                  Get.toNamed(Routes.DOG);
+                },
+              ),
+            )
+          ],
         ),
         body: home.isLoading
             ? Center(
